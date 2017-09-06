@@ -19,7 +19,7 @@ var mochaTimeout = process.env.DEBUG ? 99999999 : 60000;
 exports.config = {
   // Set a base URL in order to shorten url command calls. If your url parameter starts
   // with "/", then the base url gets prepended.
-  baseUrl: 'http://replaceme/',
+  baseUrl: 'https://qdtmwutelwebo02.azurewebsites.net/',
 
   //
   // =================
@@ -29,9 +29,9 @@ exports.config = {
   // should work too though). These services define specific user and key (or access key)
   // values you need to put in here in order to connect to these services.
   //
-  user: process.env.SAUCE_USERNAME,
-  key: process.env.SAUCE_ACCESS_KEY,
-  sauceConnect: true,
+  //user: process.env.SAUCE_USERNAME,
+  //key: process.env.SAUCE_ACCESS_KEY,
+  //sauceConnect: true,
 
   //
   // ==================
@@ -77,7 +77,7 @@ exports.config = {
     // 5 instances get started at a time.
     maxInstances: 5,
     //
-    browserName: 'firefox'
+    browserName: 'chrome'
   }],
   //
   // ===================
@@ -91,7 +91,7 @@ exports.config = {
   sync: true,
   //
   // Level of logging verbosity: silent | verbose | command | data | result | error
-  logLevel: 'silent',
+  logLevel: 'error',
   //
   // Enables colors for log output.
   coloredLogs: true,
@@ -135,7 +135,7 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ['sauce', 'visual-regression'],
+  services: ['visual-regression','selenium-standalone'],
 
   visualRegression: {
     compare: new VisualRegressionCompare.LocalCompare({
@@ -143,7 +143,7 @@ exports.config = {
       screenshotName: getScreenshotName.bind(null, 'latest'),
       diffName: getScreenshotName.bind(null, 'diff')
     }),
-    viewports: [{width: 300, height: 500}, {width: 800, height: 700}]
+    viewports: [{width: 1280, height: 800}]
   },
   //
   // Framework you want to run your specs with.

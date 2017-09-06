@@ -5,13 +5,14 @@ var prodConfig = require('./wdio.conf.js').config;
 
 // clone prod config and add new properties/overrides
 var localConfig = Object.assign(prodConfig, {
-  baseUrl: 'http://localhost',
+  baseUrl: 'https://ddtmwutelwebo02.azurewebsites.net/',
 
   capabilities: [{
     browserName: 'chrome'
   }],
 
   services: ['selenium-standalone'],
+
 
   // Hooks to notify Growl-like programs
   onPrepare: function (config, capabilities) {

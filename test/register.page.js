@@ -1,24 +1,37 @@
 class Register {
   // Replace these selectors
+  get first () { return $('input[name="firstName"]'); }
+  get last () { return $('input[name="lastName"]'); }
   get email () { return $('input[name="email"]'); }
-  get password () { return $('input[name="password"]'); }
-  get confirmPassword () { return $('input[name="confirmPassword"]'); }
-  get submit () { return $('button*=Register'); }
-  get accountLoginLink () { return $('*=Already have an account?'); }
+  get confirm () { return $('input[name="confirmEmail"]'); }
+  get company () { return $('input[name="company"]'); }
+  get phone () { return $('input[name="phone"]'); }
+  get vin () { return $('input[name="vin"]'); }
+  get recaptcha () { return $('#recaptcha-anchor')}
+  get submit () { return $('input[value="Next"]'); }
+  get signUpLink () { return $('button*=Sign Up'); }
 
-  register (email, password, confirmPassword) {
-    confirmPassword = typeof confirmPassword == 'string' ? confirmPassword : password;
+  register (first, last, email, confirm, phone, company, vin) {
+    confirm = typeof confirm == 'string' ? confirm : email;
 
+    this.signUpLink.click();
+
+    browser.waitUntil(function () {
+      return browser.isVisible('input[name="firstName"]')
+    }, 5000, 'Could not find the input fields');
+
+    this.first.setValue(first);
+    this.last.setValue(last);
     this.email.setValue(email);
-    this.password.setValue(password);
-    this.confirmPassword.setValue(confirmPassword);
-
-    this.submit.click();
+    this.confirm.setValue(confirm);
+    this.phone.setValue(phone);
+    this.company.setValue(company);
+    this.vin.setValue(vin);
   }
 
   isRegistered () {
-    // Replace this with an Boolean response that identifies if you've successfully registered
-    // example: return browser.getUrl().includes('REPLACEME');
+    // Replace this with a Boolean response that identifies if you've successfully registered
+    return browser.getUrl().includes('/signup/submission/thank-you');
   }
 }
 
